@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import varad.in.spring_boot_jwt_authentication_api.dto.LoginRequest;
 import varad.in.spring_boot_jwt_authentication_api.dto.RegisterRequest;
 import varad.in.spring_boot_jwt_authentication_api.service.AuthService;
 
@@ -27,6 +28,14 @@ public class AuthController {
         authService.register(request);
 
         return ResponseEntity.ok("User registered successfully");
+    }
+    @PostMapping("/login")
+    public ResponseEntity<String> login(
+            @Valid @RequestBody LoginRequest request) {
+
+        authService.login(request);
+
+        return ResponseEntity.ok("Login successful");
     }
 
 }
